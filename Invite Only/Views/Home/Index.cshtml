@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Invite Only</h1>
+    <p class="lead">A simple module for ASP.Net MVC that only lets in people who are invited</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Denial</h2>
+        <p>
+            Click on this link to experience the pain of denial
+        </p>
+        <p>
+            @Html.ActionLink("Try To Act", "InviteOnlyAction", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Invitation</h2>
+        <p>Click this button to use the first invite to gain access</p>
+        <p>
+            @Html.ActionLink("Try To Act", "InviteOnlyAction", new { invite = ViewBag.FirstInvite.Value }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>
