@@ -202,7 +202,7 @@
     <Content Include="Views\Home\Denied.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\InviteOnly\InviteOnly.csproj">
+    <ProjectReference Include="..\InviteOnly\InviteOnly.csproj">
       <Project>{c27fa4f9-aa29-4d8c-bbff-cd3f257d4e6d}</Project>
       <Name>InviteOnly</Name>
     </ProjectReference>
