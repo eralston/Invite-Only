@@ -11,6 +11,7 @@ namespace InviteOnly
 {
     /// <summary>
     /// An action filter attribute that only allows requests with an existing valid request to execute the action or controller marked
+    /// 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class InviteOnlyAttribute : AuthorizeAttribute
@@ -19,11 +20,13 @@ namespace InviteOnly
 
         /// <summary>
         /// Gets or sets the name of the Controller to which we redirect on a deny 
+        /// NOTE: If not set, this will assume the deny controller is the current request's controller
         /// </summary>
         public string DenyController { get; set; }
 
         /// <summary>
         /// Gets or sets the action of the controller to which we redirect on deny
+        /// NOTE: If not set, this will assume the deny action is "index"
         /// </summary>
         public string DenyAction { get; set; }
 
@@ -48,10 +51,19 @@ namespace InviteOnly
         /// <param name="filterContext"></param>
         private void Redirect(AuthorizationContext filterContext)
         {
-            string controller = this.DenyController ?? "Home";
-            string action = this.DenyAction ?? "Index";
+            // Default to "Index" action
+            string actionName = this.DenyAction ?? "Index";
 
-            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = controller, action = action }));
+            // Default to the current controller
+            string controllerName = this.DenyController;
+            if(string.IsNullOrEmpty(controllerName))
+            {
+                RouteData routeData = filterContext.HttpContext.Request.RequestContext.RouteData;
+                controllerName = routeData.GetRequiredString("controller");
+            }
+
+            // Redirect to the new controller and action
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = controllerName, action = actionName }));
         }
     }
 }

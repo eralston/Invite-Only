@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CreatedDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fulfilled)
+        </th>
         <th></th>
     </tr>
 
@@ -28,6 +31,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fulfilled)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

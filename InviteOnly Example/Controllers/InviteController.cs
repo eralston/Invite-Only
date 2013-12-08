@@ -14,7 +14,7 @@ namespace Invite_Only.Controllers
 {
     public class InviteController : Controller, IInviteContextProvider
     {
-        private InviteContext _context = new InviteContext();
+        private ExampleContext _context = new ExampleContext();
 
         /// <summary>
         /// A context that implements persisting the Invite model

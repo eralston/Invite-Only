@@ -13,7 +13,7 @@ namespace Invite_Only
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Invite_Only.Models.InviteContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Invite_Only.Models.ExampleContext>());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

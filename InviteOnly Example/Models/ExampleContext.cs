@@ -8,10 +8,11 @@ using InviteOnly;
 
 namespace Invite_Only.Models
 {
-    public class InviteContext : DbContext, IInviteContext
-    {    
-        public InviteContext() : base("name=InviteContext") { }
+    public class ExampleContext : DbContext, IInviteContext
+    {
+        public ExampleContext() : base("name=ExampleContext") { }
 
+        // This property is required by IInviteContext
         public System.Data.Entity.DbSet<InviteOnly.Invite> Invites { get; set; }
     }
 }
