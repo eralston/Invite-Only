@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using InviteOnly.Models;
+using InviteOnly;
 
 using Invite_Only.Models;
 
@@ -12,31 +12,25 @@ namespace Invite_Only.Controllers
 {
     public class HomeController : Controller, IInviteContextProvider
     {
-
         InviteContext _context = new InviteContext();
-        public IInviteContext InviteContext
-        {
-            get { return _context; }
-        }
+
+        public IInviteContext InviteContext { get { return _context; } }
+
+        [InviteOnly(DenyAction = "Denied")]
+        public ActionResult InviteOnlyAction() { return View(); }
+
+        public ActionResult Denied() { return View(); }
 
         public ActionResult Index()
         {
             Invite firstInvite = _context.Invites.Where(i => i.Fulfilled == false).Take(1).SingleOrDefault();
             if (firstInvite == null)
+            {
                 firstInvite = Invite.Create(_context);
-            ViewBag.FirstInvite = firstInvite;
-            return View();
-        }
+                _context.SaveChanges();
+            }
 
-        public ActionResult Denied()
-        {
-            return View();
-        }
-
-        [InviteOnly.Filters.InviteOnly(DenyAction="Denied")]
-        public ActionResult InviteOnlyAction()
-        {
-            return View();
+            return View(firstInvite);
         }
 
         protected override void Dispose(bool disposing)
@@ -46,7 +40,5 @@ namespace Invite_Only.Controllers
 
             base.Dispose(disposing);
         }
-
-        
     }
 }

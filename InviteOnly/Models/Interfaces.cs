@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InviteOnly.Models
+namespace InviteOnly
 {
     /// <summary>
     /// Interface for an entity framework DB context that provides an invite DB Set
     /// </summary>
     public interface IInviteContext
     {
-        System.Data.Entity.DbSet<InviteOnly.Models.Invite> Invites { get; }
+        System.Data.Entity.DbSet<Invite> Invites { get; set; }
     }
 
     /// <summary>

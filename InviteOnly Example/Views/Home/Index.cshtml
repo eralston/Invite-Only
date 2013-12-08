@@ -1,10 +1,14 @@
-﻿@{
+﻿@using InviteOnly
+
+@model InviteOnly.Invite
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>Invite Only</h1>
-    <p class="lead">A simple module for ASP.Net MVC that only lets in people who are invited</p>
+    <p class="lead">A simple module for ASP.Net MVC that helps you only lets in people who are invited</p>
 </div>
 
 <div class="row">
@@ -21,7 +25,7 @@
         <h2>Invitation</h2>
         <p>Click this button to use the first invite to gain access</p>
         <p>
-            @Html.ActionLink("Try To Act", "InviteOnlyAction", new { invite = ViewBag.FirstInvite.Value }, new { @class = "btn btn-default" })
+            @Html.ActionLinkWithInvite(Model, "Try To Act, With Invite", "InviteOnlyAction", null, new { @Class = "btn btn-default" })
         </p>
     </div>
 </div>

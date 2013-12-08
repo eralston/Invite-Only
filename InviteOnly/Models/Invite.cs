@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
 
-namespace InviteOnly.Models
+namespace InviteOnly
 {
     /// <summary>
     /// This class defines an instance of welcoming a user into the system and interacts with the action filter attributes
@@ -31,7 +31,7 @@ namespace InviteOnly.Models
         /// <param name="value"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static Invite Create(string value = null, int type = 0)
+        public static Invite Create(string value = null)
         {
             // Default to using the generated unique key
             value = value ?? GenerateUniqueInviteValue();
@@ -40,7 +40,6 @@ namespace InviteOnly.Models
             Invite invite = new Invite();
             invite.CreatedDate = DateTime.Now;
             invite.Value = value;
-            invite.Type = type;
             invite.Fulfilled = false;
 
             return invite;
@@ -53,9 +52,9 @@ namespace InviteOnly.Models
         /// <param name="value"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static Invite Create(IInviteContext context, string value = null, int type = 0)
+        public static Invite Create(IInviteContext context, string value = null)
         {
-            Invite invite = Create(value, type);
+            Invite invite = Create(value);
             
             // Add it to the context
             context.Invites.Add(invite);
@@ -75,16 +74,10 @@ namespace InviteOnly.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// An optional type parameter. It is recommended client code use an enumeration
-        /// </summary>
-        public int Type { get; set; }
-
-        /// <summary>
         /// A unique value for the invite
         /// </summary>
         [Required]
         public string Value { get; set; }
-
 
         public bool Fulfilled { get; set; }
 

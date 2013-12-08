@@ -1,4 +1,4 @@
-﻿@model InviteOnly.Models.Invite
+﻿@model InviteOnly.Invite
 
 @{
     ViewBag.Title = "Edit";
@@ -16,14 +16,6 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type)
-                @Html.ValidationMessageFor(model => model.Type)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Value, new { @class = "control-label col-md-2" })

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Invite_Only.Models;
 
-using InviteOnly.Models;
+using InviteOnly;
 
 namespace Invite_Only.Controllers
 {
