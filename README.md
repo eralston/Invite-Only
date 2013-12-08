@@ -71,6 +71,8 @@ public ActionResult InviteOnlyAction()
 public ActionResult Denied() { return View(); }
 ```
 
+NOTE: The default value for action, if not specified, is "index". It is also possible to choose a different controller (other than the current controller) to receive the redirected request.
+
 4) To access the action, generate a new Invite model, then pass it to the view:
 
 ```CSharp
