@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/kxfb0a1t4x70cm5c)](https://ci.appveyor.com/project/eralston/invite-only)
+
 Invite-Only
 ===========
 
