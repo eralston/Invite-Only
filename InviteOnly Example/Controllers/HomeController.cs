@@ -29,6 +29,22 @@ namespace Invite_Only.Controllers
             return View();
         }
 
+        [InviteOnly(AsAuthenticated = true)]
+        public ActionResult InviteOnlyActionAsAuthenticated()
+        {
+            // Pull the current invite for this request and mark it as fulfilled
+            Invite invite = this.GetCurrentInvite();
+            if(invite != null)
+            {
+                invite.Fulfilled = true;
+                _context.SaveChanges();
+            }
+
+            ViewBag.IsAuthenticated = Request.IsAuthenticated;
+            
+            return View();
+        }
+
         public ActionResult Denied() { return View(); }
 
         public ActionResult Index()

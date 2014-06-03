@@ -202,6 +202,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\Denied.cshtml" />
+    <Content Include="Views\Home\InviteOnlyActionAsAuthenticated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InviteOnly\InviteOnly.csproj">

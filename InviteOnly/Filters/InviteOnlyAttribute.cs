@@ -30,6 +30,12 @@ namespace InviteOnly
         /// </summary>
         public string DenyAction { get; set; }
 
+        /// <summary>
+        /// If set to True, this will allow an authenticated 
+        /// Default FALSE
+        /// </summary>
+        public bool AsAuthenticated { get; set; }
+
         #endregion
 
         /// <summary>
@@ -41,7 +47,10 @@ namespace InviteOnly
             // If the invite has not valid, then redirect them to the deny action
             if (!filterContext.Controller.HasCurrentInvite())
             {
-                Redirect(filterContext);
+                if (AsAuthenticated)
+                    base.OnAuthorization(filterContext);
+                else
+                    Redirect(filterContext);
             }
         }
 
@@ -56,7 +65,7 @@ namespace InviteOnly
 
             // Default to the current controller
             string controllerName = this.DenyController;
-            if(string.IsNullOrEmpty(controllerName))
+            if (string.IsNullOrEmpty(controllerName))
             {
                 RouteData routeData = filterContext.HttpContext.Request.RequestContext.RouteData;
                 controllerName = routeData.GetRequiredString("controller");
